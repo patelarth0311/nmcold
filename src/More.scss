@@ -1,0 +1,347 @@
+
+$pi:3.14;
+$nav-item:3;
+$open-distance:105px;
+$opening-angle:$pi*2;
+$proj-item:4;
+$cube-item: 4;
+$counter: 1;
+@use "sass:list";
+$cubes: 3,6,7,8,9,10,11,14;
+$cubesRed: 6,8,14;
+
+
+
+
+   .nav-item {
+ 
+    @for $i from 1 through $nav-item{
+        &:nth-child(#{$i+2}){
+            
+          transition-duration:280ms;
+        }
+      }
+   }
+   
+   
+ 
+   .nav-open:checked~.nav-item{
+   
+    transition-timing-function:cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  @for $i from 1 through $nav-item{
+
+    &:nth-child(#{$i+2}){
+      transition-duration:600ms+(100ms*$i);
+      transform:translate3d(100px*$i,0,0);
+
+    }
+  }
+
+  
+  }
+
+
+
+
+/* Project Css
+*/
+
+#projectsCont:hover .proj {
+
+  @for $i from 1 through $proj-item{
+
+    &:nth-child(#{$i}){
+    
+      transition-duration:600ms+(100ms*$i);
+      transform: rotate(30deg) skew(-20deg) translate(-20px  + (25px * $i),-20px  + (25px * $i));
+    }
+
+  }
+}
+
+
+
+
+.proj{
+
+
+  background: #ba0c2f;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:  352px;
+  height: 416px;
+row-gap: 30px;
+  border-radius: 65px;
+  position: absolute;
+  transform: rotate(10deg) skew(-60deg);
+box-shadow:  1vmin 1vmin 2vmin rgba(0, 0, 0, .20);
+flex-direction: column;
+
+transition-duration: .6s;
+-webkit-transition-duration: 0.6s;
+-moz-transition-duration: 0.6s;
+-o-transition-duration: 0.6s;
+
+
+@for $i from 1 through 4{
+
+  &:nth-child(#{$i}){
+  
+
+    transform: rotate(30deg) skew(-20deg) translate(-20px  + (20px * $i),-20px + (20px * $i));;
+    z-index: 10 - $i;
+  }
+
+}
+
+}
+
+
+
+
+
+#img {
+
+width: 80px;
+margin-top: 20px;
+}
+
+#me {
+  margin: 20px;
+}
+
+
+
+
+.buttonFirst p {
+  visibility: hidden;
+}
+
+.showCard {
+  box-shadow: 0vmin .5vmin 2vmin rgba(black, .1);
+  transform: rotate(0) skew(0deg) translate(0px,0px);
+  animation: showCard 1s forwards;
+  
+  filter:  none;
+
+.buttonFirst, #button2  {
+  box-shadow: 0vmin .8vmin 1.5vmin rgba(black, .15);
+}
+
+}
+
+ 
+
+
+
+
+@keyframes showCard  {
+  0% {
+   
+   
+    z-index:19;
+    transform: rotate(30deg) skew(-20deg) translate(0px,0px);;
+  } 
+ 
+  100% {
+    z-index:19;
+    transform: translateY(-280px);
+
+  }
+ 
+}
+
+
+@keyframes slideUp {
+  0% {
+   
+   
+  
+    transform: translateY(0px);
+  } 
+ 
+  100% {
+    z-index:19;
+    transform: translateY(-120px) scale(1.02);
+
+  }
+ 
+}
+
+
+
+
+ #firstCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+position: absolute;
+
+}
+
+
+
+
+/*Project slide contents*/
+
+.slideContent {
+display: flex;
+flex-direction: column;
+width: 100%;
+height: 100%;
+}
+#codeslash {
+  width: 30px;
+  transition-duration: 0.6s;
+  padding-top: 10px;
+}
+
+
+
+
+  #toggleCont {
+  display: flex;
+  column-gap: 20px;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+.slideButton img {
+width: 30px;
+
+transition-duration: 1s;
+box-shadow: 0vmin 0.8vmin 1.5vmin rgba(0, 0, 0,.15)
+
+}
+.slideButton p {
+visibility: hidden;
+}
+
+.slideButton :hover {
+  cursor: pointer;
+  transform: rotateZ(360deg)
+}
+
+
+
+
+
+#button2, .buttonFirst{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2vmin 2vmin 2vmin rgba(black, .2);
+ border-radius: 25%;
+ width: 50px;
+ height: 50px;
+ background-color: white;
+ -webkit-transition-duration: 0.5s;
+     -moz-transition-duration: 0.5s;
+     -o-transition-duration: 0.5s;
+     transition-duration: 0.5s;
+ position: absolute;
+z-index: 18;
+
+ &:hover {
+  transform: scale(1.2);
+}
+
+
+}
+.buttonFirst  {
+  background-color:rgb(195, 12, 49);
+
+ position: absolute;
+ bottom: -20px;
+}
+#button2 {
+  background-color:rgb(195, 12, 49);
+  border-radius: 30%;
+  width: 45px;
+  height: 45px;
+}
+
+#button {
+  position: relative;
+  border-radius: 30px;
+  cursor:auto;
+  width: 130px;
+  box-shadow: 0 2vmin 2vmin rgba(black, .1);
+}
+
+
+.buttonFirst {
+  position: relative;
+ }
+
+
+ /* Alter card for phone displays
+*/
+@media (max-width:620px) { 
+
+  #button2{
+    
+    bottom: 40px;
+     }
+  .proj {
+
+    @for $i from 1 through 4 {
+
+      &:nth-child(#{$i}){
+      
+    
+        transform: translateY(-20px  + (14px * $i));
+      
+      }
+    
+    }
+
+    box-shadow: 0vmin .5vmin 2vmin rgba(black, .2);
+
+  }
+
+  #button2, .buttonFirst {
+
+    box-shadow: 0vmin 0.8vmin 1.5vmin rgba(0 ,0 ,0 , .15);
+
+  }
+
+  #projectsCont:hover .proj {
+
+    @for $i from 1 through $proj-item{
+  
+      &:nth-child(#{$i}){
+      
+        transition-duration:600ms+(100ms*$i);
+        transform:   translateY(-20px  + (20px * $i));
+      }
+  
+    }
+  }
+
+
+  .showCard {
+
+
+    animation: slideUp 1s forwards;
+   
+  
+  }
+
+#button2, .buttonFirst {
+  box-shadow: 0 2vmin 2vmin rgba(black, 0.15);
+}
+  
+
+
+}
